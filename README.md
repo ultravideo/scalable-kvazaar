@@ -1,46 +1,47 @@
-Kvazaar
+Scalable Kvazaar
 =======
-An open-source HEVC encoder licensed under LGPLv2.1
+An open-source SHVC encoder licensed under LGPLv2.1 (fork of https://github.com/ultravideo/kvazaar)
 
 Join channel #kvazaar_hevc in Freenode IRC network to contact us.
 
-Kvazaar is still under development. Speed and RD-quality will continue to improve.
+Scalable Kvazaar is still under development. Speed and RD-quality will continue to improve.
 
 http://ultravideo.cs.tut.fi/#encoder for more information.
 
-- Linux/Mac [![Build Status](https://travis-ci.org/ultravideo/kvazaar.svg?branch=master)](https://travis-ci.org/ultravideo/kvazaar)
-- Windows [![Build status](https://ci.appveyor.com/api/projects/status/88sg1h25lp0k71pu?svg=true)](https://ci.appveyor.com/project/Ultravideo/kvazaar)
-
 ## Table of Contents
 
-- [Using Kvazaar](#using-kvazaar)
+- [Using Scalable Kvazaar](#using-scalable-kvazaar)
   - [Example:](#example)
   - [Parameters](#parameters)
   - [LP-GOP syntax](#lp-gop-syntax)
 - [Presets](#presets)
 - [Kvazaar library](#kvazaar-library)
-- [Compiling Kvazaar](#compiling-kvazaar)
-  - [Required libraries](#required-libraries)
+- [Compiling Scalable Kvazaar](#compiling-scalable-kvazaar)
   - [Autotools](#autotools)
   - [OS X](#os-x)
   - [Visual Studio](#visual-studio)
   - [Docker](#docker)
   - [Visualization (Windows only)](#visualization-windows-only)
 - [Paper](#paper)
-- [Contributing to Kvazaar](#contributing-to-kvazaar)
+- [Contributing to Scalable Kvazaar](#contributing-to-scalable-kvazaar)
   - [Code documentation](#code-documentation)
   - [For version control we try to follow these conventions:](#for-version-control-we-try-to-follow-these-conventions)
   - [Testing](#testing)
   - [Unit tests](#unit-tests)
   - [Code style](#code-style)
 
-## Using Kvazaar
+## Using Scalable Kvazaar
 
 ### Example:
 
-    kvazaar --input BQMall_832x480_60.yuv --output out.hevc
+    kvazaar --input BQMall_832x480_60.yuv --layer --input BQMall_1664x960_60.yuv --output out.hevc
+or
 
+    kvazaar --layer-res 832x480 --layer --input BQMall_1664x960_60.yuv --output out.hevc
+    
 The mandatory parameters are input and output. If the resolution of the input file is not in the filename, or when pipe is used, the input resolution must also be given: ```--input-res=1920x1080```.
+
+To add another layer use the ```--layer``` parameter and all other parameters after will be associated with the new layer. If only one input is given, it is used for all layers and scaled to the desired layer resolution.
 
 The default input format is 8-bit yuv420p for 8-bit and yuv420p10le for 10-bit. Input format and bitdepth can be selected with ```--input-format``` and ```--input-bitdepth```.
 
@@ -367,7 +368,7 @@ must be defined. On other platforms it's not strictly required.
 The needed linker and compiler flags can be obtained with pkg-config.
 
 
-## Compiling Kvazaar
+## Compiling Scalable Kvazaar
 If you have trouble regarding compiling the source code, please make an
 [issue](https://github.com/ultravideo/kvazaar/issues) about in Github.
 Others might encounter the same problem and there is probably much to
@@ -425,25 +426,25 @@ Optional font file `arial.ttf` is to be placed in the working directory, if bloc
 
 ## Paper
 
-Please cite [this paper](https://dl.acm.org/citation.cfm?doid=2964284.2973796) for Kvazaar:
+Please cite [this paper (coming soon)] for Scalable Kvazaar:
 
-```M. Viitanen, A. Koivula, A. Lemmetti, A. Ylä-Outinen, J. Vanne, and T. D. Hämäläinen, “Kvazaar: open-source HEVC/H.265 encoder,” in Proc. ACM Int. Conf. Multimedia, Amsterdam, The Netherlands, Oct. 2016.```
+```J. Laitinen, A. Lemmetti, and J. Vanne, “Real-time implementation of scalable HEVC encoder,” Accepted to IEEE Int. Conf. Image Processing, Abu Dhabi, United Arab Emirates, Oct. 2020.```
 
 Or in BibTex:
 
 ```
-@inproceedings{Kvazaar2016,
- author = {Viitanen, Marko and Koivula, Ari and Lemmetti, Ari and Yl\"{a}-Outinen, Arttu and Vanne, Jarno and H\"{a}m\"{a}l\"{a}inen, Timo D.},
- title = {Kvazaar: Open-Source HEVC/H.265 Encoder},
- booktitle = {Proceedings of the 24th ACM International Conference on Multimedia},
- year = {2016},
- isbn = {978-1-4503-3603-1},
- location = {Amsterdam, The Netherlands},
- url = {http://doi.acm.org/10.1145/2964284.2973796},
+@inproceedings{ScalableKvazaar2020,
+ author = {Laitinen, Jaakko and Lemmetti, Ari and Vanne, Jarno},
+ title = {Real-time implementation of scalable HEVC encoder},
+ booktitle = {IEEE International Conference on Image Processing},
+ year = {2020},
+ isbn = {},
+ location = {Abu Dhabi, United Arab Emirates},
+ url = {},
 }
 ```
 
-## Contributing to Kvazaar
+## Contributing to Scalable Kvazaar
 We are happy to look at pull requests in Github. There is still lots of work to be done.
 
 
